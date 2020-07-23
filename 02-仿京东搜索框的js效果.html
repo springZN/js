@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿京东搜索框</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .father {
+            box-sizing: border-box;
+            position: relative;
+            width: 600px;
+            height: 34px;
+            padding: 2px 0px;
+            padding-left: 2px;
+            background-color: #e1251b;
+            margin: 100px auto;
+        }
+        
+        input {
+            width: 500px;
+            height: 30px;
+            outline: none;
+            border: none;
+            padding-left: 18px;
+        }
+        
+        .hints {
+            /* display: none; */
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #989898;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="hints">保温杯</div>
+        <input type="text">
+    </div>
+    <script>
+        var hint = document.querySelector('.hints');
+        var search = document.querySelector('input');
+        search.addEventListener('focus', function() {
+            hint.style.color = '#c8c8c8';
+        })
+        search.addEventListener('blur', function() {
+            hint.style.color = '#989898';
+        })
+        search.addEventListener('input', function() {
+            hint.style.display = 'none';
+            this.style.color = '#5f5f5f';
+            if (this.value == '') {
+                hint.style.display = 'inline-block';
+            }
+        })
+    </script>
+</body>
+
+</html>
