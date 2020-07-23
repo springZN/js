@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示隐藏密码</title>
+    <link rel="stylesheet" href="./../阿里3/iconfont.css">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    div {
+        width: 300px;
+        height: 30px;
+        border-bottom: 1px solid #ccc;
+        margin: 100px auto;
+    }
+    
+    input {
+        display: inline-block;
+        outline: none;
+        border: none;
+        height: 30px;
+        width: 270px;
+    }
+    
+    i {
+        display: inline-block;
+        height: 30px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div>
+        <input type="password">
+        <i class="iconfont">&#xe612;</i>
+    </div>
+    <script>
+        var input = document.querySelector('input');
+        var i = document.querySelector('i');
+        var flag = 0;
+        i.onclick = function() {
+            if (flag == 0) {
+                input.type = 'text';
+                this.innerHTML = '&#xe60c;';
+                flag = 1;
+            } else {
+                input.type = 'password';
+                this.innerHTML = '&#xe612;';
+                flag = 0;
+            }
+        }
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        })
+    </script>
+</body>
+
+</html>
