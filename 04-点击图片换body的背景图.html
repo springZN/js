@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击图片换body的背景图</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            background-image: url(./images/b-background.jpg);
+        }
+        
+        div {
+            width: 430px;
+            margin: 30px auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, .5);
+        }
+        
+        img {
+            vertical-align: bottom;
+            width: 100px;
+            margin-left: 10px;
+        }
+        
+        img:first-child {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./images/b-background.jpg" alt=""><img src="./images/b-background2.jpg" alt=""><img src="./images/b-background3.jpg" alt=""><img src="./images/b-background4.jpg" alt="">
+    </div>
+    <script>
+        var imgs = document.getElementsByTagName('img');
+        console.log(imgs);
+        for (var i = 0; i < imgs.length; i++) {
+            console.log(11);
+            imgs[i].onclick = function() {
+                document.body.style.backgroundImage = 'url(' + this.src + ')';
+            }
+        }
+    </script>
+</body>
+
+</html>
