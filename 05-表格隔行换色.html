@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隔行换色</title>
+    <style>
+        table {
+            width: 1000px;
+            border: 1px solid #333;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        td {
+            text-align: center;
+        }
+        tr ,th,td{
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>成绩单</caption>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>语文</th>
+                <th>数学</th>
+                <th>英语</th>
+                <th>生物</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>小红</td>
+                <td>70</td>
+                <td>65</td>
+                <td>85</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>小兰</td>
+                <td>80</td>
+                <td>68</td>
+                <td>95</td>
+                <td>53</td>
+            </tr>
+            <tr>
+                <td>小强</td>
+                <td>98</td>
+                <td>55</td>
+                <td>85</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>小梨</td>
+                <td>50</td>
+                <td>45</td>
+                <td>100</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>小绿</td>
+                <td>88</td>
+                <td>78</td>
+                <td>100</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        let tds = document.querySelector('tbody').querySelectorAll('tr');
+        for (let i = 0; i < tds.length;i++) {
+            tds[i].onmouseover = function() {
+                tds[i].style.backgroundColor = '#e1ddae';
+           }
+           tds[i].onmouseout = function() {
+               tds[i].style.backgroundColor = '';
+           }
+        }
+    </script>
+</body>
+</html>
