@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: lightyellow;
+        }
+        
+        table {
+            width: 1000px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+        }
+        
+        td,
+        tr {
+            height: 50px;
+            text-align: center;
+        }
+        
+        tr,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+        
+        input {
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    商品
+                </th>
+                <th>
+                    价格
+                </th>
+                <th>请勾选商品</th>
+            </tr>
+        </thead>
+        <tbody id="btns">
+            <tr>
+                <td>苹果</td>
+                <td>1元</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>香蕉</td>
+                <td>5元</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>巧克力</td>
+                <td>15元</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>蓝莓</td>
+                <td>18元</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>咸菜</td>
+                <td>5元</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td></td>
+            <td>全选</td>
+            <td>
+                <input type="checkbox" id="all">
+            </td>
+        </tfoot>
+    </table>
+    <script>
+        var all = document.querySelector('#all');
+        var btns = document.querySelector('#btns').querySelectorAll('input');
+        // 全选按钮事件 控制下面的按钮是否选择
+        all.addEventListener('click', function() {
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].checked = this.checked;
+                }
+            })
+            // 单个按钮事件 单个按钮的选择状态控制着全选按钮的状态
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function() {
+                var flag = true;
+                for (var i = 1; i < btns.length; i++) {
+                    if (!btns[i].checked) {
+                        flag = false;
+                        break;
+                    }
+                }
+                all.checked = flag;
+            }
+        }
+    </script>
+</body>
+
+</html>
