@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .tab {
+            width: 800px;
+            margin: 100px auto;
+        }
+        
+        .top {
+            height: 35px;
+            color: #333;
+            background-color: #e7eaed;
+            line-height: 35px;
+        }
+        
+        .top ul:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        
+        .top ul {
+            border-bottom: 1px solid red;
+        }
+        
+        .top li {
+            float: left;
+            padding: 0px 30px;
+        }
+        
+        .top li:hover {
+            color: red;
+        }
+        
+        .bottom {
+            padding: 0px 30px;
+        }
+        
+        .now {
+            background-color: red;
+            color: white;
+        }
+        
+        .top .now:hover {
+            color: white;
+        }
+        
+        .bottom div {
+            display: none;
+        }
+        
+        .bottom div.message-show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="top">
+            <ul>
+                <li class="now">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价（50000）</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <div class="message-show">商品介绍模块</div>
+            <div>规则与包装模块</div>
+            <div>售后服务模块</div>
+            <div>商品评价模块</div>
+            <div>手机社区模块</div>
+        </div>
+    </div>
+    <script>
+        var lis = document.querySelector('.top').querySelectorAll('li');
+        var btms = document.querySelector('.bottom').querySelectorAll('div');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('indext', i);
+            lis[i].onclick = function() {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                this.className = 'now';
+                var index1 = this.getAttribute('indext');
+                for (var i = 0; i < btms.length; i++) {
+                    btms[i].style.display = 'none';
+                }
+                btms[index1].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
