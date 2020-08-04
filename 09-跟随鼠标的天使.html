@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跟随鼠标的天使</title>
+    <style>
+        div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url(./images/angel.jpg);
+            background-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        document.onmousemove = function(e) {
+            var x = e.pageX;
+            var y = e.pageY;
+            div.style.top = y - div.offsetHeight / 2 + 'px';
+            div.style.left = x - div.offsetWidth / 2 + 2 + 'px';
+        }
+    </script>
+</body>
+
+</html>
