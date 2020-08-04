@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成列表</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+        
+        tr {
+            text-align: center;
+        }
+        
+        thead tr {
+            background-color: #d6d7d8;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button>魏璎珞</button>
+        <button>宏利</button>
+        <button>傅恒</button>
+        <button>名誉</button>
+        <button>大猪蹄子</button>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var tbody = document.querySelector('tbody');
+        var button = document.querySelectorAll('button');
+        var dates = [{
+            name: '魏璎珞',
+            sumject: 'javascript',
+            score: 100,
+        }, {
+            name: '宏利',
+            sumject: 'javascript',
+            score: 98,
+        }, {
+            name: '傅恒',
+            sumject: 'javascript',
+            score: 99,
+        }, {
+            name: '名誉',
+            sumject: 'javascript',
+            score: 88,
+        }, {
+            name: '大猪蹄子',
+            sumject: 'javascript',
+            score: 88,
+        }];
+
+        function row(num) {
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            // 循环对应的数组元素
+            for (var k in dates[num]) {
+                var td = document.createElement('td');
+                td.innerHTML = dates[num][k];
+                tr.appendChild(td);
+            }
+            var de_td = document.createElement('td');
+            de_td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(de_td);
+            de_td.onclick = function() {
+                tbody.removeChild(this.parentNode)
+            }
+        }
+        for (let i = 0; i < button.length; i++) {
+            button[i].addEventListener('click', function() {
+                row(i);
+            })
+        }
+    </script>
+</body>
+
+</html>
