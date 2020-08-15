@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器案例-发送短信</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button>发送</button>
+    </div>
+    <script>
+        var button = document.getElementsByTagName('button');
+        var rest = 7;
+        var time = null;
+        button[0].onclick = function() {
+            this.disabled = true;
+            time = setInterval(() => {
+                if (rest == 0) {
+                    clearInterval(time);
+                    this.innerHTML = '发送';
+                    rest = 7;
+                    this.disabled = false;
+                } else {
+                    this.innerHTML = `剩余的时间是${rest}秒`;
+                    rest--;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
