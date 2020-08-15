@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6秒之后跳转页面</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        var time = 6;
+
+        function down() {
+            if (time == 0) {
+                location.href = 'http://www.itcast.cn';
+            } else {
+                div.innerHTML = '你将在' + time + '秒之后跳转页面';
+                time--;
+            }
+        }
+        setInterval(down, 1000)
+    </script>
+</body>
+
+</html>
