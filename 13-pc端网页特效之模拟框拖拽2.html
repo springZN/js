@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟框拖拽</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            background-color: #b2b2b2;
+        }
+        
+        .top {
+            width: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 0 auto;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #555;
+        }
+        
+        form {
+            box-sizing: border-box;
+            position: fixed;
+            top: 150px;
+            left: 740px;
+            width: 515px;
+            height: 282px;
+            color: #000000;
+            font-size: 14px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #fff;
+            cursor: move;
+        }
+        
+        span {
+            margin-right: 10px;
+        }
+        
+        input {
+            height: 30px;
+            width: 348px;
+            padding-left: 7px;
+            outline: none;
+            border: 1px solid rgba(169, 169, 169, .2);
+        }
+        
+        .member {
+            font-size: 18px;
+            height: 70px;
+            line-height: 60px;
+            text-align: center;
+        }
+        
+        .username {
+            margin-left: 32px;
+            margin-bottom: 13px;
+        }
+        
+        .password {
+            margin-left: 19px;
+        }
+        
+        .login-m {
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #eeeeee;
+            margin-top: 30px;
+            margin-left: 145px;
+            cursor: pointer;
+        }
+        
+        .close {
+            position: absolute;
+            top: -10px;
+            right: -17px;
+            font-size: 12px;
+            line-height: 30px;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <a href="javscript:;">登录</a>
+    </div>
+    <form class="login">
+        <div class="member">登录会员</div>
+        <div class="username">
+            <span>用户名：</span>
+            <input type="text" placeholder="请输入用户名">
+        </div>
+        <div class="password">
+            <span>登录密码：</span>
+            <input type="text" placeholder="请输入密码">
+        </div>
+        <div class="login-m">登录会员</div>
+        <div class="close">关闭</div>
+    </form>
+    <script>
+        var login = document.querySelector('.top');
+        var form = document.querySelector('.login');
+        var shut = document.querySelector('.close');
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        })
+        shut.onclick = function() {
+            form.style.display = 'none';
+            document.body.style.backgroundColor = '#fff';
+        }
+        login.addEventListener('click', function() {
+            document.body.style.backgroundColor = '#b2b2b2';
+            form.style.display = 'block';
+        })
+        form.addEventListener('mousedown', function(e) {
+            var formLeft = e.pageX - this.offsetLeft;
+            var formTop = e.pageY - this.offsetTop;
+
+            function fn(e) {
+                form.style.left = e.pageX - formLeft + 'px';
+                form.style.top = e.pageY - formTop + 'px';
+            }
+            document.addEventListener('mousemove', fn)
+            document.addEventListener('mouseup', function() {
+                document.removeEventListener('mousemove', fn)
+            })
+        })
+    </script>
+</body>
+
+</html>
