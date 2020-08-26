@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .left {
+            width: 400px;
+            height: 400px;
+            float: left;
+            position: relative;
+            margin: 100px;
+            overflow: hidden;
+        }
+        
+        .left .magnifying {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: #fede4f;
+            opacity: .5;
+            cursor: move;
+        }
+        
+        .right {
+            position: relative;
+            display: none;
+            float: left;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            margin-left: 30px;
+            background: url(./images/magnifying.jpg) no-repeat;
+            background-size: 800px 800px;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .right img {
+            Visibility: hidden;
+            width: 800px;
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+        <div class="left">
+            <img src="./images/magnifying.jpg" alt="">
+            <div class="magnifying"></div>
+        </div>
+        <div class="right">
+            <img src="./images/magnifying.jpg" alt="" class="bigImg">
+        </div>
+    </div>
+    <script>
+        var big = document.querySelector('.big');
+        var left = document.querySelector('.left');
+        var magnifying = document.querySelector('.magnifying');
+        var right = document.querySelector('.right');
+        // 1、鼠标经过right的时候 显示 遮挡层和左边的大盒子
+        left.addEventListener('mouseover', function() {
+            magnifying.style.display = 'block';
+            right.style.display = 'block';
+        })
+        left.addEventListener('mouseout', function() {
+                magnifying.style.display = 'none';;
+                right.style.display = 'none';
+            })
+            //2、 把鼠标在盒子中的坐标给遮挡层 完成遮挡层在盒子中移动
+        left.onmouseover = function(e) {
+            var x = e.pageX - left.offsetLeft;
+            var y = e.pageY - left.offsetTop;
+            // 2 (1)、让鼠标在遮挡层的中间 分别减去遮挡层自身的宽度和高度即可
+            var ml = x - magnifying.offsetWidth / 2;
+            var mt = y - magnifying.offsetHeight / 2;
+            maxMl = left.offsetWidth - magnifying.offsetWidth;
+            maxMt = left.offsetHeight - magnifying.offsetHeight;
+            // 2 (2)、遮挡层的边偏移不能小于0 如果小于等于0 就把边偏移设置为0
+            if (ml <= 0) {
+                ml = 0;
+            } else if (ml >= maxMl) {
+                // 只能在maxMl之间的水平距离移动 超过 就把 ml设置为 maxML 这样遮挡层水平移动就不会超过小盒子了。下面的垂直的，一样的道理
+                ml = maxMl;
+            }
+            if (mt <= 0) {
+                mt = 0;
+            } else if (mt >= maxMt) {
+                mt = maxMt;
+            }
+            magnifying.style.left = ml + 'px';
+            magnifying.style.top = mt + 'px';
+            // 3、大盒子跟着小盒子走
+            var bigImg = document.querySelector('.bigImg');
+            var bigImgML = bigImg.offsetWidth - right.offsetWidth;
+            console.log(bigImgML);
+            var bigImgMT = bigImg.offsetHeight - right.offsetHeight;
+            // 小盒子的移动距离 / 小盒子的最大移动距离 * 大盒子的最大移动距离 = 大盒子的移动距离
+            var bigImgl = ml / maxMl * bigImgML;
+            var bigImgt = mt / maxMt * bigImgMT;
+            right.style.backgroundPosition = `-${bigImgl}px -${bigImgt}px`;
+        }
+    </script>
+</body>
+
+</html>
