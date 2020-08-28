@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定右侧侧边栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 800px;
+            margin: 10px auto;
+        }
+        
+        .top {
+            margin-top: 0;
+            height: 100px;
+            background-color: #ea6e56;
+        }
+        
+        .banner {
+            height: 500px;
+            background-color: #f2956c;
+        }
+        
+        .footer {
+            height: 1000px;
+            background-color: #ffc097;
+        }
+        
+        .left {
+            position: absolute;
+            top: 300px;
+            right: 100px;
+            height: 200px;
+            width: 60px;
+            background-color: #a3576f;
+        }
+        
+        a {
+            display: none;
+            text-decoration-line: none;
+            color: #5d4b73;
+            font-weight: bold;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"></div>
+    <div class="banner"></div>
+    <div class="footer"></div>
+    <div class="left">
+        <a href="#">返回顶部</a>
+    </div>
+    <script>
+        var banner = document.querySelector('.banner');
+        var footer = document.querySelector('.footer')
+        var left = document.querySelector('.left');
+        var a = left.children[0];
+        var bannerTop = banner.offsetTop;
+        var footerTop = footer.offsetTop;
+        var leftTop = left.offsetTop - bannerTop;
+        document.addEventListener('scroll', function() {
+            console.log(banner.offsetTop);
+            // 1、页面被卷去的头部大于等于banner的offsetTop时 让left变为固定定位 改变left的top值【如果不修改left的边偏移 变成固定定位后 还是会以原来的边偏移进行偏移】
+            if (window.pageYOffset >= banner.offsetTop) {
+                left.style.position = 'fixed';
+                left.style.top = leftTop + 'px';
+            } else {
+                left.style.position = 'absolute';
+                left.style.top = '300px';
+            }
+            // 2、页面被卷去的头部大于等于footer的offsetTop时 显示a标签
+            if (window.pageYOffset >= footerTop) {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none'
+            }
+        })
+    </script>
+</body>
+
+</html>
