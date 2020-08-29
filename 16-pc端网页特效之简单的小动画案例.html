@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单的小动画</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        .sliderbar li {
+            position: relative;
+            width: 160px;
+            margin: 0 auto;
+            height: 50px;
+            color: #164f56;
+            background-image: linear-gradient(to left, #164f56, #95acb4);
+            margin-bottom: 10px;
+        }
+        
+        span {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            width: 160px;
+            height: 30px;
+            background-image: linear-gradient(to left, #164f56, #95acb4);
+        }
+        
+        .slider {
+            position: absolute;
+            top: 0;
+            width: 160px;
+            height: 30px;
+            color: #95acb4;
+            background-color: #e7f0ed;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sliderbar">
+        <ul>
+            <li class="module">
+                <span>向左滑商品简介</span>
+                <div class="slider">商品简介</div>
+            </li>
+            <li>
+                <span>向左滑同类商品</span>
+                <div class="slider">同类商品</div>
+            </li>
+            <li>
+                <span>向左滑查看订单</span>
+                <div class="slider">查看订单</div>
+            </li>
+            <li>
+                <span>向左滑用户中心</span>
+                <div class="slider">用户中心</div>
+            </li>
+            <li>
+                <span>向左滑问题反馈</span>
+                <div class="slider">问题反馈</div>
+            </li>
+        </ul>
+    </div>
+    <!-- 鼠标经过li 就让li对应的slider滑动到左侧 离开就让slider滑动到右侧 -->
+    <script>
+        var sliderbar = document.querySelectorAll('li');
+        var slider = document.querySelector('.slider');
+
+        function animation(object, target) {
+            clearInterval(object.time);
+            object.time = setInterval(function() {
+                var step = (target - object.offsetLeft) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                object.style.left = object.offsetLeft + step + 'px';
+                if (object.offsetLeft == target) {
+                    clearInterval(object.time);
+                }
+            }, 15)
+        }
+        for (var i = 0; i < sliderbar.length; i++) {
+            sliderbar[i].addEventListener('mouseover', function() {
+                animation(this.children[1], -100);
+            })
+            sliderbar[i].addEventListener('mouseout', function() {
+                animation(this.children[1], 0);
+            })
+        }
+    </script>
+</body>
+
+</html>
