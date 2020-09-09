@@ -82,7 +82,25 @@
             } else {
                 a.style.display = 'none'
             }
-        })
+        });
+        // 带有动画的返回顶部
+        function animation(object, target, callback) {
+            clearInterval(object.timer);
+            object.timer = setInterval(function() {
+                var step = (target - window.pageYOffset) / 10;
+                step = step > 10 ? Math.ceil(step) : Math.floor(step);
+                window.scroll(0, window.pageYOffset + step);
+                if (window.pageYOffset == target) {
+                    clearInterval(object.timer);
+                    callback && callback();
+                }
+            }, 15)
+        }
+        a.addEventListener('click', function(e) {
+            // 需要先禁止a的默认行为，点击a才能实现页面滚动
+            e.preventDefault();
+            animation(window, 0);
+        });
     </script>
 </body>
 
