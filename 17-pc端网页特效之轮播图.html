@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 800px;
+            height: 350px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        /* 轮播图 */
+        
+        .carousel .slide-img {
+            /* 加动画必须有定位才行 */
+            position: absolute;
+            width: 1000%;
+        }
+        
+        .carousel .slide-img li {
+            float: left;
+        }
+        
+        img {
+            width: 800px;
+            height: 350px;
+        }
+        /* 双侧的按钮 */
+        
+        .button div {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            width: 33px;
+            height: 52px;
+            transform: translateY(-50%);
+        }
+        
+        .button a {
+            position: absolute;
+            left: 11px;
+            top: 11px;
+            height: 25px;
+            width: 25px;
+            transform: rotate(45deg);
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+        }
+        
+        .button .right {
+            left: 405px;
+            left: 757px;
+        }
+        
+        .button .right a {
+            left: -3px;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            border-bottom: none;
+            border-left: none;
+        }
+        
+        .button div:hover {
+            background-color: rgba(0, 0, 0, .2);
+        }
+        /* 下面的切换按钮 */
+        
+        .clicle {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 10px;
+            right: 30px;
+            height: 10px;
+            width: 240px;
+        }
+        
+        .clicle span {
+            width: 30px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        
+        .clicle .now {
+            background-color: #e1dda2;
+        }
+    </style>
+    <!-- 因为carousel.js依赖 animate.js 所以，animate.js 要写到 carousel.js 上面 -->
+    <script src="./js/animation.js"></script>
+    <!-- 引入实现轮播图的外部js文件 -->
+    <script src="./js/carousel.js"></script>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="slide-img">
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel2.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel4.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="./images/carousel5.jpg" alt="">
+                </a>
+            </li>
+
+        </ul>
+        <div class="button">
+            <div class="left">
+                <a href="javascript:;"></a>
+            </div>
+            <div class="right">
+                <a href="javascript:;"></a>
+            </div>
+        </div>
+        <div class="clicle"></div>
+    </div>
+</body>
+
+</html>
+
+</html>
