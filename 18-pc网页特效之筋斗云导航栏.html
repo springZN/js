@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .box {
+            position: relative;
+            width: 1200px;
+            height: 42px;
+            margin: 0 auto;
+            background-color: #fffdcc;
+        }
+        
+        span {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 83px;
+            height: 42px;
+            background: url(./images/somersault.gif)
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+            /* ul必须加上定位 这样才能再能压盖上 span 要不然span在ul的上面 因为事件是给ul里面的li绑定的 所以很容易出错 */
+            position: absolute;
+            padding: 0 20px;
+        }
+        
+        li {
+            width: 83px;
+            text-align: center;
+            line-height: 42px;
+        }
+        
+        .now {
+            color: #019317;
+        }
+        
+        li:hover a {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span></span>
+        <ul>
+            <li><a href="javascript:;" class="now">首页</a></li>
+            <li><a href="javascript:;">分类</a></li>
+            <li><a href="javascript:;">产品详细</a></li>
+            <li><a href="javascript:;">服务</a></li>
+            <li><a href="javascript:;">地区</a></li>
+        </ul>
+    </div>
+    <script src="./js/animation.js"></script>
+    <script>
+        var lis = document.querySelectorAll('li');
+        var a = document.querySelectorAll('a');
+        var span = document.querySelector('span');
+        // 用排他思想做a链接的效果
+        for (var i = 0; i < a.length; i++) {
+            a[i].addEventListener('click', function() {
+                for (var i = 0; i < a.length; i++) {
+                    a[i].className = '';
+                }
+                this.className = 'now';
+            })
+        }
+        // 筋斗云的移动
+        var start = 20; // 记录span所在的位置
+        for (var i = 0; i < lis.length; i++) {
+            // 鼠标经过 把当前的li 的位置作为目标值
+            lis[i].addEventListener('mouseover', function() {
+                animation(span, this.offsetLeft);
+            });
+            // 鼠标离开 回到原点
+            lis[i].addEventListener('mouseout', function() {
+                animation(span, start);
+            });
+            // 鼠标点击某一个li 获取当前的offsetLeft 给start
+            lis[i].addEventListener('click', function() {
+                start = this.offsetLeft;
+            })
+        }
+    </script>
+</body>
+
+</html>
