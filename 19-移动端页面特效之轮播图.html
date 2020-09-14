@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 20px;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 10rem;
+            height: 6rem;
+            margin: 0 auto;
+            /* 让其他的图片隐藏 只显示一张图片 */
+            overflow: hidden;
+        }
+        
+        ul {
+            list-style: none;
+            width: 100rem;
+            height: 6rem;
+            /* 清除浮动 */
+            overflow: hidden;
+            /* 因为下面滚动的问题 在第一张的前面加了一张图片 需要显示原来的第一张图片 */
+            margin-left: -100%;
+        }
+        
+        img {
+            float: left;
+            /* 这里的宽度用的100% 如果像pc端那样 给ul一个超大的宽度 img浮动 img继承的是ul的宽度 img也会变大  */
+            /* width: 100%; */
+            /* 如果用百分比  可以让每个img（7张图片）的宽度平均占父级元素的宽度*/
+            width: 10%;
+            height: 6rem;
+        }
+        
+        .button {
+            position: absolute;
+            justify-content: space-between;
+            display: flex;
+            right: .5rem;
+            bottom: .3rem;
+            height: .5rem;
+            width: 5rem;
+        }
+        
+        span {
+            width: .5rem;
+            background-color: #fdc7bb;
+            transition: all .5s;
+        }
+        
+        .now {
+            width: 1.5rem;
+            background-color: #bf815f;
+        }
+    </style>
+    <script src="./js/mobile.js"></script>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul>
+            <li><img src="./images/mobile4.jpg" alt=""></li>
+            <li><img src="./images/mobile.jpg" alt=""></li>
+            <li><img src="./images/mobile1.jpg" alt=""></li>
+            <li><img src="./images/mobile2.jpg" alt=""></li>
+            <li><img src="./images/mobile3.jpg" alt=""></li>
+            <li><img src="./images/mobile4.jpg" alt=""></li>
+            <li><img src="./images/mobile.jpg" alt=""></li>
+            <!-- 因为移动端和pc端不同 移动端需要手指拖动 在第一张向左拖动的时候 需要显示最后一张 但是做无缝滚动 最后一张是第一张 所以应该在第一张的前面再加一张图片 -->
+        </ul>
+        <div class="button">
+            <span class="now"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</body>
+
+</html>
